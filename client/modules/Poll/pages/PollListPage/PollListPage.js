@@ -28,7 +28,7 @@ function mapStateToProps(state) {
 PollListPage.propTypes = {
   polls: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    options: PropTypes.arrayof(PropTypes.shape({
+    options: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
       votes: PropTypes.number.isRequired,
     })).isRequired,

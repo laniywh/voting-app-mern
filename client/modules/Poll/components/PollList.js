@@ -11,7 +11,6 @@ function PollList(props) {
 
   return (
     <ul className="list-group polls-container">
-      <li>TEST</li>
       {
         props.polls.map(poll => {
           return (
@@ -29,7 +28,7 @@ function PollList(props) {
 PollList.propTypes = {
   polls: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    options: PropTypes.arrayof(PropTypes.shape({
+    options: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
       votes: PropTypes.number.isRequired,
     })).isRequired,

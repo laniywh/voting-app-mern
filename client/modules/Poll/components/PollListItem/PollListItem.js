@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 function PollListItem(props) {
   return (
     <li className="list-group-item poll">
-      <Link to="/">{props.poll.name}</Link>
+      <Link to={ "polls/" + props.poll._id }>{ props.poll.name }</Link>
     </li>
   );
 }
@@ -12,7 +12,7 @@ function PollListItem(props) {
 PollListItem.propTypes = {
   poll: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    options: PropTypes.arrayof(PropTypes.shape({
+    options: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
       votes: PropTypes.number.isRequired,
     })).isRequired,
