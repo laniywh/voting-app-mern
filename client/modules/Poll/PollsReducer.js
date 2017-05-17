@@ -1,14 +1,20 @@
-import { ADD_POLL, ADD_POLLS } from './PollActions';
+import { UPDATE_CURR_POLL, ADD_POLLS } from './PollActions';
 
-const initialState = [];
+const initialState = {
+    data: [],
+    currPoll: {
+        name: '',
+        options: [],
+    }
+};
 
 const PollsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POLLS:
-      return action.payload;
+      return { ...state, data: action.payload };
 
-    case ADD_POLL:
-      return [action.poll, ...state.polls];
+    case UPDATE_CURR_POLL:
+      return { ...state, currPoll: action.payload };
 
     default:
       return state;

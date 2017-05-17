@@ -21,7 +21,7 @@ class PollListPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    polls: state.polls,
+    polls: state.polls.data,
   };
 }
 

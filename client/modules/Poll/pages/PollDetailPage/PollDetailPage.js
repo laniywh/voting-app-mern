@@ -3,21 +3,24 @@ import { connect } from 'react-redux';
 
 // Import Components
 import PollVote from '../../components/PollVote/PollVote';
-import PollGraph from '../../components/PollGraph/PollGraph';
+// import PollGraph from '../../components/PollGraph/PollGraph';
+
+// Import Actions
+import { fetchPoll } from '../../PollActions';
+
 
 
 class PollDetailPage extends Component {
+    componentDidMount() {
+        this.props.fetchPoll(this.props.params.id);
+    }
+
     findPoll(poll, id) {
         return poll._id === id;
     }
 
     render() {
-        const { polls } = this.props;
-        const pollId = this.props.params.id;
-
-        const poll = polls.find(function (poll) {
-            return poll._id === pollId;
-        });
+        const poll = this.props.currPoll;
 
         return (
             <div className="poll-container">
@@ -28,7 +31,6 @@ class PollDetailPage extends Component {
                 </div>
 
                 <div className="col-md-6 graph">
-                    <PollGraph poll={ poll } />
                 </div>
               </div>
             </div>
@@ -36,12 +38,15 @@ class PollDetailPage extends Component {
     }
 }
 
+// PollDetailPage.need =[params => {
+//     return fetchPoll(params.id);
+// }]
 
 
 function mapStateToProps(state) {
     return {
-        polls: state.polls,
+        currPoll: state.polls.currPoll,
     }
 }
 
-export default connect(mapStateToProps)(PollDetailPage);
+export default connect(mapStateToProps, { fetchPoll })(PollDetailPage);

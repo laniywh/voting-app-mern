@@ -54,11 +54,13 @@ export function addPoll(req, res) {
  * @returns void
  */
 export function getPoll(req, res) {
-  Poll.findOne({ cuid: req.params.cuid }).exec((err, poll) => {
+  console.log('getPoll...');
+
+  Poll.findOne({ _id: req.params.id }).exec((err, poll) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.json({ poll });
+    res.json(poll);
   });
 }
 

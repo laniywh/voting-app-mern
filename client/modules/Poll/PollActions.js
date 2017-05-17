@@ -1,7 +1,7 @@
 import callApi from '../../util/apiCaller';
 
 // Export Constants
-export const ADD_POLL = 'ADD_POLL';
+export const UPDATE_CURR_POLL = 'UPDATE_CURR_POLL';
 export const ADD_POLLS = 'ADD_POLLS';
 export const FETCH_POLLS = 'FETCH_POLLS';
 
@@ -19,6 +19,24 @@ export function fetchPolls() {
     return callApi('polls').then(res => {
       console.log(res);
       dispatch(addPolls(res.polls));
+    });
+  };
+}
+
+export function updateCurrPoll(poll) {
+  return {
+    type: UPDATE_CURR_POLL,
+    payload: poll,
+  };
+}
+
+export function fetchPoll(id) {
+  console.log('fetching a poll...');
+
+  return (dispatch) => {
+    return callApi('polls/' + id).then(res => {
+      console.log(res);
+      dispatch(updateCurrPoll(res));
     });
   };
 }
